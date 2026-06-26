@@ -1,0 +1,11 @@
+# Auto-detect text files
+* text=auto
+
+# Python files
+*.py text diff=python
+
+# Markdown
+*.md text
+
+# SQL files
+*.sql text

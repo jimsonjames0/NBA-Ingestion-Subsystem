@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Data files
+data/*.csv
+data/*.sqlite
+data/*.db
+*.csv
+*.sqlite
+*.db
+*.parquet
+
+# Logs
+logs/*.log
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Database credentials
+.credentials
+config/local_config.py
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# OS files
+Thumbs.db
+Desktop.ini
