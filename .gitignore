@@ -53,3 +53,4 @@ htmlcov/
 # OS files
 Thumbs.db
 Desktop.ini
+data/*.zip
