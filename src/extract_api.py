@@ -340,15 +340,18 @@ def extract_nba_api_data(season=None, include_player_stats=False, players_list=N
     }
     
     # 1. Get games 
-
+    extraction_start = time.perf_counter()
     games = extract_api_games_for_stg(season)
+    extraction_end = time.perf_counter()
+    print(f"API Extraction: {extraction_end-extraction_start:.2f}s")
     if games:
         logger.info(f"First game record: {games[0]}")
     else:
         logger.warning("No games returned from extract_api_games_for_stg()")
 
     result['games'] = games
-    
+    transformation_start = time.perf_counter()
+
     # 2. Get player stats (only if requested)
     if include_player_stats and players_list:
             # Fetch specific players game logs
@@ -393,12 +396,17 @@ def extract_nba_api_data(season=None, include_player_stats=False, players_list=N
             team_logs = add_matchKey(team_logs, games)  # Need to create this
             team_logs = [log for log in team_logs if log.get('matchKey')]
             result['team_logs'] = transform_api_teamLogs(team_logs)
+
             logger.info(f"Extracted {len(result['team_logs'])} team records")
         else:
             logger.warning("No team data fetched")
     else:
         if include_team_stats and not teams_list:
             logger.warning("No teams specified for extraction")
+    transformation_end = time.perf_counter()
+    print(f"API Transformation/Validation Runtime: {transformation_end - transformation_start:.2f}s")
+
+
 
     return result
 

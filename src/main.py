@@ -4,6 +4,7 @@ import argparse
 import logging
 import sys
 import os
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -141,7 +142,11 @@ Examples:
     args = parser.parse_args()
     
     try:
+        pipeline_start = time.perf_counter()
         run_pipeline(args)
+        pipeline_end = time.perf_counter()
+
+        print(f"Pipeline Runtime: {pipeline_end - pipeline_start:.2f}s")
     except KeyboardInterrupt:
         logger.info("Pipeline interrupted by user")
         sys.exit(1)
